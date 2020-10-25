@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <style>
+        #mapid { height: 500px; } 
+    </style>
+    <script>
+        var opciones;
+        var distancia=0;
+        var longD, latD;
+        function succes(pos){
+            var crd= pos.coords;
+            document.write((crd.latitude+""+crd.longitude)+"<br>");
+            sumaDistancia(crd.longitude, crd.latitude);
+            document.write(distancia+"<br>");
+        };
+        function sumaDistancia(long, lat){
+            long=Math.abs(long);
+            lat=Math.abs(lat);
+            if(!longD){
+                longD=long;
+                latD=lat;
+            }
+            distancia+=111120*(Math.hypot(Math.abs((longD-long), Math.abs((latD-lat)))));
+            longD=long;
+            latD=lat;
+        };
+
+        function error(err) {
+            console.warn('ERROR(' + err.code + '): ' + err.message);
+        };
+        opciones = {
+            timeout: 50000,
+        };
+
+        if(!navigator.geolocation)
+            console.log("El navegador no es compatible con geolocalizacion");
+        else
+            navigator.geolocation.watchPosition(succes, error, opciones); 
+    </script>
+    <title>Distancia recorrida</title>
+</head>
+<body>
+    <div id="mapid"></div>
+    <!--<script src="index.js"></script>-->
+</body>
+</html>
