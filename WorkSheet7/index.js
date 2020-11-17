@@ -1,4 +1,4 @@
- //Ejercicio 1
+/*  //Ejercicio 1
 var opciones;
 var distancia=0;
 var longD, latD;
@@ -30,10 +30,10 @@ opciones = {
 if(!navigator.geolocation)
     console.log("El navegador no es compatible con geolocalizacion");
 else
-    navigator.geolocation.watchPosition(succes, error, opciones); 
+    navigator.geolocation.watchPosition(succes, error, opciones);  */
 
 
-/* //Ejercicio 2
+//Ejercicio 2
 
 
 function success(pos){
@@ -67,7 +67,7 @@ function error(err) {
 if(!navigator.geolocation)
     console.log("El navegador no es compatible con geolocalizacion");
 else
-    navigator.geolocation.getCurrentPosition(success, error); */
+    navigator.geolocation.getCurrentPosition(success, error);
 
 
 /* //Ejercicio3
